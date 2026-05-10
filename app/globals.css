@@ -193,17 +193,6 @@
 
 /* ===== RESPONSIVE ===== */
 
-/* Desktop: show nav links, hide hamburger */
-@media (min-width: 769px) {
-  .navbar-links { display: flex; }
-  .navbar-hamburger { display: none; }
-}
-
-/* Mobile: hide nav links, show hamburger */
-@media (max-width: 768px) {
-  .navbar-hamburger { display: flex; }
-}
-
 /* Tablet landscape / large tablet */
 @media (max-width: 1024px) {
   .about-grid { gap: clamp(32px, 4vw, 64px); }
@@ -484,7 +473,7 @@
   letter-spacing: 0.05em;
 }
 .navbar-links {
-  display: none;
+  display: flex;
   gap: 24px;
   font-family: var(--font-mono-custom);
   font-size: 12px;
@@ -1197,6 +1186,12 @@
   border-color: var(--color-accent);
 }
 .email-link-icon { color: var(--color-accent); transition: transform 280ms; }
+
+/* ===== NAVBAR RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .navbar-links { display: none; }
+  .navbar-hamburger { display: flex; }
+}
 
 /* Noise overlay */
 body::before {
