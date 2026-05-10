@@ -43,14 +43,14 @@ export function Navbar() {
         </Link>
 
         <div className='navbar-right'>
-          <div className='navbar-links hidden md:flex'>
+          <div className='navbar-links'>
             {navLinks.map((link) => (
               <NavLink key={link.href} href={link.href} num={link.num} label={link.label} />
             ))}
           </div>
           <ThemeToggle theme={theme} setTheme={setTheme} />
           <button
-            className='navbar-hamburger md:hidden'
+            className='navbar-hamburger'
             onClick={() => setMenuOpen((o) => !o)}
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           >
