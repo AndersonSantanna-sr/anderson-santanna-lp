@@ -94,7 +94,7 @@ function ProjectCard({ project: p, delay }: { project: (typeof projects)[0]; del
   return (
     <RevealDiv delay={delay}>
       <div className='project-card'>
-        {/* eslint-disable-next-line react/forbid-dom-props */}
+        {/* eslint-disable-next-line react/forbid-dom-props -- dynamic gradient, cannot be a static class */}
         <div className='project-card-header' style={{ background: p.bgGradient }}>
           <span className='project-card-emoji'>{p.emoji}</span>
           <span className='project-card-stat'>
