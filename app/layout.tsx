@@ -1,30 +1,33 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Playfair_Display, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/providers/ThemeProvider';
-import { Toaster } from '@/components/ui/sonner';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const playfair = Playfair_Display({
+  variable: '--font-playfair',
   subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap',
 });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-jetbrains-mono',
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
 });
 
-// TODO: update title, description, and metadataBase URL for each project
 export const metadata: Metadata = {
-  title: { default: 'Product Name', template: '%s | Product Name' },
-  description: 'Your product description here.',
+  title: { default: "Anderson Sant'Anna — Senior React Native Engineer", template: "%s | Anderson Sant'Anna" },
+  description: "Senior React Native & TypeScript Engineer with 8 years of experience building mobile and web products for millions of users across Latin America.",
   openGraph: {
-    title: 'Product Name',
-    description: 'Your product description here.',
+    title: "Anderson Sant'Anna — Senior React Native Engineer",
+    description: "Senior React Native & TypeScript Engineer with 8 years of experience building mobile and web products.",
     images: ['/og-image.png'],
   },
   twitter: { card: 'summary_large_image' },
-  metadataBase: new URL('https://yoursite.com'),
+  metadataBase: new URL('https://anderson.dev'),
 };
 
 export default function RootLayout({
@@ -33,13 +36,12 @@ export default function RootLayout({
   return (
     <html
       lang='en'
-      className={`${geistSans.variable} ${geistMono.variable}`}
+      className={`${playfair.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
-      <body className='min-h-screen bg-background font-sans antialiased'>
+      <body className='min-h-screen bg-background antialiased'>
         <ThemeProvider>
           {children}
-          <Toaster />
         </ThemeProvider>
       </body>
     </html>
