@@ -16,6 +16,7 @@ const navLinks = [
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
@@ -24,22 +25,75 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  return (
-    <nav className={cn('navbar', scrolled && 'navbar-scrolled')}>
-      <Link href='/' className='navbar-brand'>
-        <span className='navbar-badge'>AS</span>
-        <span>anderson.dev</span>
-      </Link>
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [menuOpen]);
 
-      <div className='navbar-right'>
-        <div className='navbar-links hidden md:flex'>
-          {navLinks.map((link) => (
-            <NavLink key={link.href} href={link.href} num={link.num} label={link.label} />
-          ))}
+  const close = () => setMenuOpen(false);
+
+  return (
+    <>
+      <nav className={cn('navbar', scrolled && 'navbar-scrolled')}>
+        <Link href='/' className='navbar-brand'>
+          <span className='navbar-badge'>AS</span>
+          <span>anderson.dev</span>
+        </Link>
+
+        <div className='navbar-right'>
+          <div className='navbar-links hidden md:flex'>
+            {navLinks.map((link) => (
+              <NavLink key={link.href} href={link.href} num={link.num} label={link.label} />
+            ))}
+          </div>
+          <ThemeToggle theme={theme} setTheme={setTheme} />
+          <button
+            className='navbar-hamburger md:hidden'
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {menuOpen ? (
+              <svg
+                width='18'
+                height='18'
+                viewBox='0 0 18 18'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='1.8'
+              >
+                <path d='M2 2l14 14M16 2L2 16' />
+              </svg>
+            ) : (
+              <svg
+                width='18'
+                height='18'
+                viewBox='0 0 18 18'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='1.8'
+              >
+                <path d='M2 4h14M2 9h14M2 14h14' />
+              </svg>
+            )}
+          </button>
         </div>
-        <ThemeToggle theme={theme} setTheme={setTheme} />
-      </div>
-    </nav>
+      </nav>
+
+      {menuOpen && (
+        <div className='navbar-mobile-menu' onClick={close}>
+          <div className='navbar-mobile-inner' onClick={(e) => e.stopPropagation()}>
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} className='navbar-mobile-link' onClick={close}>
+                <span className='navbar-mobile-link-num'>{link.num}</span>
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
