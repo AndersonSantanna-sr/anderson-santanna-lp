@@ -13,6 +13,23 @@ const eslintConfig = defineConfig([
     "build/**",
     "next-env.d.ts",
   ]),
+  {
+    rules: {
+      // Prefer CSS classes over inline styles. Dynamic values (e.g. computed
+      // gradients) are the only acceptable exception — suppress with eslint-disable.
+      "react/forbid-dom-props": [
+        "warn",
+        {
+          forbid: [
+            {
+              propName: "style",
+              message: "Use a CSS class instead of an inline style prop.",
+            },
+          ],
+        },
+      ],
+    },
+  },
 ]);
 
 export default eslintConfig;
