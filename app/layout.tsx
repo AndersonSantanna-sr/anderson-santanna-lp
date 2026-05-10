@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Playfair_Display, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/providers/ThemeProvider';
+import { Analytics } from '@vercel/analytics/next';
 
 const playfair = Playfair_Display({
   variable: '--font-playfair',
@@ -43,7 +44,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       suppressHydrationWarning
     >
       <body className='min-h-screen bg-background antialiased'>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );
