@@ -1,65 +1,135 @@
 'use client';
 
-import { motion } from 'motion/react';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { staggerContainer, fadeUp } from '@/lib/animations';
+import { useState, useEffect } from 'react';
+
+const phrases = [
+  'Senior React Native Engineer',
+  'TypeScript Specialist',
+  'Mobile Architect',
+  'AI-Augmented Developer',
+  'Open Source Builder',
+];
 
 export function HeroSection() {
+  const [phraseIndex, setPhraseIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  const displayText = phrases[phraseIndex].slice(0, charIndex);
+
+  useEffect(() => {
+    const phrase = phrases[phraseIndex];
+
+    if (!deleting) {
+      if (charIndex < phrase.length) {
+        const t = setTimeout(() => setCharIndex((c) => c + 1), 55 + Math.random() * 40);
+        return () => clearTimeout(t);
+      } else {
+        if (phraseIndex === phrases.length - 1) return;
+        const t = setTimeout(() => setDeleting(true), 1600);
+        return () => clearTimeout(t);
+      }
+    } else {
+      if (charIndex > 0) {
+        const t = setTimeout(() => setCharIndex((c) => c - 1), 28);
+        return () => clearTimeout(t);
+      } else {
+        const t = setTimeout(() => {
+          setDeleting(false);
+          setPhraseIndex((i) => (i + 1) % phrases.length);
+        }, 0);
+        return () => clearTimeout(t);
+      }
+    }
+  }, [charIndex, deleting, phraseIndex]);
+
   return (
-    <section className='relative flex min-h-[90vh] flex-col items-center justify-center overflow-hidden py-20 text-center'>
-      <motion.div
-        variants={staggerContainer}
-        initial='hidden'
-        animate='visible'
-        className='mx-auto max-w-4xl px-4 sm:px-6'
-      >
-        {/* TODO: replace mock content with real copy */}
-        <motion.p variants={fadeUp} className='mb-4 text-sm font-medium text-primary'>
-          Introducing v2.0 ✨
-        </motion.p>
+    <header className='hero'>
+      <div className='hero-grid-bg' />
 
-        <motion.h1
-          variants={fadeUp}
-          className='text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl'
-        >
-          Build something <span className='text-primary'>people love</span>
-        </motion.h1>
+      <div className='hero-shapes'>
+        <div className='hero-shape-circle-lg' />
+        <div className='hero-shape-square' />
+        <div className='hero-shape-circle-sm' />
+      </div>
 
-        <motion.p
-          variants={fadeUp}
-          className='mt-6 max-w-2xl text-lg text-muted-foreground sm:text-xl'
-        >
-          A modern landing page template with everything you need to ship fast. Clean, accessible,
-          and fully customizable.
-        </motion.p>
+      <div className='hero-content'>
+        <div className='hero-inner'>
+          <div className='hero-eyebrow'>
+            <span className='hero-eyebrow-line' />
+            Portfolio · 2026
+            <span className='hero-status-dot' />
+            Available for new projects
+          </div>
 
-        <motion.div variants={fadeUp} className='mt-10 flex flex-wrap justify-center gap-4'>
-          {/* TODO: update CTA href and labels */}
-          <Button
-            size='lg'
-            nativeButton={false}
-            render={
-              <Link href='#contact'>
-                Get started <ArrowRight className='ml-2 h-4 w-4' />
-              </Link>
-            }
-          />
-          <Button
-            size='lg'
-            variant='outline'
-            nativeButton={false}
-            render={<Link href='#benefits'>See how it works</Link>}
-          />
-        </motion.div>
+          <h1 className='hero-heading'>
+            Anderson
+            <br />
+            Sant&apos;<span className='font-serif italic text-accent'>Anna</span>.
+          </h1>
 
-        {/* TODO: replace with real hero image or illustration */}
-        <motion.div
-          variants={fadeUp}
-          className='mt-16 h-64 w-full rounded-2xl bg-muted sm:h-80 md:h-96'
-        />
-      </motion.div>
-    </section>
+          <div className='hero-role'>
+            <span className='hero-role-prompt'>~/role $</span>
+            <span>
+              {displayText}
+              <span className='hero-caret'>▎</span>
+            </span>
+          </div>
+
+          <p className='hero-tagline'>
+            Building production-grade{' '}
+            <span className='text-accent not-italic'>mobile experiences</span> that scale, delight,
+            and endure.
+          </p>
+
+          <div className='hero-ctas'>
+            <HeroBtn href='#work' primary>
+              View Work
+              <ArrowIcon />
+            </HeroBtn>
+            <HeroBtn href='#contact'>
+              Get in Touch
+              <ArrowIcon />
+            </HeroBtn>
+          </div>
+        </div>
+      </div>
+
+      <div className='hero-scroll'>
+        scroll
+        <span className='hero-scroll-line' />
+      </div>
+    </header>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg
+      width='12'
+      height='12'
+      viewBox='0 0 12 12'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='1.5'
+    >
+      <path d='M2 10L10 2M4 2h6v6' />
+    </svg>
+  );
+}
+
+function HeroBtn({
+  href,
+  primary,
+  children,
+}: {
+  href: string;
+  primary?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <a href={href} className={primary ? 'hero-btn hero-btn-primary' : 'hero-btn'}>
+      {children}
+    </a>
   );
 }
