@@ -19,20 +19,23 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Anderson Sant'Anna — Senior React Native Engineer", template: "%s | Anderson Sant'Anna" },
-  description: "Senior React Native & TypeScript Engineer with 8 years of experience building mobile and web products for millions of users across Latin America.",
+  title: {
+    default: "Anderson Sant'Anna — Senior React Native Engineer",
+    template: "%s | Anderson Sant'Anna",
+  },
+  description:
+    'Senior React Native & TypeScript Engineer with 8 years of experience building mobile and web products for millions of users across Latin America.',
   openGraph: {
     title: "Anderson Sant'Anna — Senior React Native Engineer",
-    description: "Senior React Native & TypeScript Engineer with 8 years of experience building mobile and web products.",
+    description:
+      'Senior React Native & TypeScript Engineer with 8 years of experience building mobile and web products.',
     images: ['/og-image.png'],
   },
   twitter: { card: 'summary_large_image' },
-  metadataBase: new URL('https://anderson.dev'),
+  metadataBase: new URL('https://andersonsantanna.io'),
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
       lang='en'
@@ -40,9 +43,7 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body className='min-h-screen bg-background antialiased'>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
