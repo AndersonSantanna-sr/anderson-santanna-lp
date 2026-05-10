@@ -3,6 +3,27 @@
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { RevealDiv } from '@/components/ui/RevealDiv';
 
+const stats = [
+  { num: '8+', label: 'Years of experience' },
+  { num: '28M+', label: 'App downloads' },
+  { num: '2', label: 'Apps at scale' },
+];
+
+const stack = [
+  'React Native',
+  'TypeScript',
+  'Expo',
+  'Node.js',
+  'Zustand',
+  'React Query',
+  'Reanimated',
+  'NativeWind',
+  'Jest',
+  'Detox',
+  'Java',
+  'React',
+];
+
 export function AboutSection() {
   return (
     <section id='about' className='section'>
@@ -48,11 +69,7 @@ export function AboutSection() {
 
             <RevealDiv delay={3}>
               <div className='about-stat-grid'>
-                {[
-                  { num: '8+', label: 'Years of experience' },
-                  { num: '28M+', label: 'App downloads' },
-                  { num: '2', label: 'Apps at scale' },
-                ].map(({ num, label }) => (
+                {stats.map(({ num, label }) => (
                   <div key={label}>
                     <div className='about-stat-num'>{num}</div>
                     <div className='about-stat-label'>{label}</div>
@@ -68,20 +85,7 @@ export function AboutSection() {
               </div>
 
               <div className='about-pills'>
-                {[
-                  'React Native',
-                  'TypeScript',
-                  'Expo',
-                  'Node.js',
-                  'Zustand',
-                  'React Query',
-                  'Reanimated',
-                  'NativeWind',
-                  'Jest',
-                  'Detox',
-                  'Java',
-                  'React',
-                ].map((t) => (
+                {stack.map((t) => (
                   <Pill key={t}>{t}</Pill>
                 ))}
               </div>
