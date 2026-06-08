@@ -15,8 +15,8 @@ const projects = [
     desc: "Senior React Native Engineer responsible for the cart and checkout experience, including scheduled delivery and click-and-collect features. One of Brazil's largest pharmacy e-commerce apps.",
     tags: ['React Native', 'TypeScript', 'Node.js', 'E-commerce'],
     hasLinks: true,
-    appStore: 'https://apps.apple.com/br/app/drogasil/id1127315431',
-    playStore: 'https://play.google.com/store/apps/details?id=br.com.drogasil.app',
+    appStore: 'https://apps.apple.com/br/app/drogasil-drogaria-online-24h/id1328994276',
+    playStore: 'https://play.google.com/store/apps/details?id=br.com.drogasil',
   },
   {
     cls: 'p2',
@@ -29,8 +29,8 @@ const projects = [
     desc: 'Contributed to the redesign of the checkout flow and the implementation of click-and-collect — buy online, pick up at your selected pharmacy.',
     tags: ['React Native', 'TypeScript', 'Node.js', 'E-commerce'],
     hasLinks: true,
-    appStore: 'https://apps.apple.com/br/app/drogaraia/id1127329700',
-    playStore: 'https://play.google.com/store/apps/details?id=br.com.drogaraia.app',
+    appStore: 'https://apps.apple.com/br/app/raia-farm%C3%A1cia-24-horas/id1093925421',
+    playStore: 'https://play.google.com/store/apps/details?id=br.com.drogaraia',
   },
   {
     cls: 'p3',
