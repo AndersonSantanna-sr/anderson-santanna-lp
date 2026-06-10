@@ -23,7 +23,7 @@ Portfolio site of Anderson Sant'Anna, Senior React Native & TypeScript Engineer.
 - **About** — stats, tech stack
 - **Skills** — bento-grid layout
 - **AI & Dev** — tools and workflow
-- **Work** — selected projects (Drogasil, Drogaraia, Vivo Bank, Iguatemi)
+- **Work** — selected projects (Drogasil, Drogaraia, Vivo Pay, Iguatemi)
 - **Experience** — timeline
 - **Contact** — email + social links
 

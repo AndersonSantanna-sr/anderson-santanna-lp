@@ -37,7 +37,7 @@ const projects = [
     bgGradient: 'linear-gradient(135deg, #15203D, #0A1228)',
     emoji: '📱',
     stat: 'via Builders',
-    name: 'Vivo Bank App',
+    name: 'Vivo Pay App',
     company: '@ Builders · for Vivo',
     role: 'Consultancy · Discontinued',
     desc: "Mobile banking application developed during consultancy at Builders for Vivo, Brazil's largest telecommunications company. App no longer active.",
